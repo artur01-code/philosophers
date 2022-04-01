@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:52:49 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 09:14:54 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 13:03:25 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 typedef struct s_philo {
 	int					id;
@@ -44,11 +45,18 @@ typedef struct s_data {
 }				t_data;
 
 void		*function();
-void		init_datas(t_data *info, char **argv);
+int		init_datas(t_data *info, char **argv);
 int			init_philos(t_data *info);
 int			init_table(t_data *info);
 long long	get_time(void);
 void		grab_fork(t_philo *ph);
 void		eat(t_philo *ph, int time_to_eat);
+void		ft_sleep(t_philo *ph, int time_to_sleep);
+void		check_death(t_philo *ph);
+void		lock_all(t_philo *ph);
+void		clean_table(t_data *data);
+int			ft_atoi(const char *str);
+int			check_args(t_data *info);
+int			handle_one(t_data *info);
 
 #endif
