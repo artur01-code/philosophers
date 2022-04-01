@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:20:56 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 12:21:08 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 13:51:35 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	error_exit(void)
 {
 	write(1, "Error\n", 6);
-	exit(0);
+	exit(1);
 }
 
 static int	check_calc_value(long res, int c, const char *str)

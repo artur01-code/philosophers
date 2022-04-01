@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:21:07 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 13:03:36 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 14:42:48 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*function(void *philos)
 
 	ph = (t_philo *) philos;
 	if (ph->id % 2)
-		usleep(ph->info->time_to_eat * 500);
+		usleep(ph->info->time_to_eat);
 	while (!ph->info->end)
 	{
 		if (ph->info->meal_flag && ph->eaten_meals == ph->info->min_meals)

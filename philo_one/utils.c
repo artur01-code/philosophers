@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:47:41 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 13:11:36 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:21:58 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	lock_all(t_philo *ph)
 		pthread_mutex_destroy(&(ph->info->fork_mtx[ph->l_fork]));
 		i++;
 	}
-	printf("%lld Philo[%d] died\n", get_time() - ph->info->start_time, ph->id);
+	printf("%lld %d died\n", get_time() - ph->info->start_time, ph->id);
 }
 
 void	clean_table(t_data *data)
@@ -45,10 +45,10 @@ void	clean_table(t_data *data)
 
 int	handle_one(t_data *info)
 {
-	printf("%lld Philo[%d] has taken a fork\n", get_time() \
+	printf("%lld %d has taken a fork\n", get_time() \
 		- info->start_time, info->philo->id);
 	usleep(info->time_to_die * 1000);
-	 printf("%lld Philo[%d] died\n", get_time() \
+	 printf("%lld %d died\n", get_time() \
 		- info->start_time, info->philo->id);
 	return (1);
 }
