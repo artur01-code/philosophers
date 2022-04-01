@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtomala <jtomala@students.42wolfsburg.de>  +#+  +:+       +#+        */
+/*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:21:07 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/29 08:06:02 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 09:23:21 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void *function(void *philos)
     {
         if (ph->info->meal_flag && ph->eaten_meals == ph->info->min_meals)
         {
-            write(1, "%lld philo[%d] ate all meals\n", 25);
+            printf("%lld Philo[%d] ate all meals\n", get_time() - ph->info->start_time, ph->id);
             return (0);
         }
         //check_death(ph);
-        //grab_fork(ph);
+        grab_fork(ph);
+        
     }
     return (0);
 }
@@ -53,16 +54,13 @@ int init_table(t_data *info)
             return (1);
         i++;
     }
-    if (info->end == 1)
+    //if (info->end == 1)
         //lock_all(info);
     return (0);
 }
 
-int init_philos(t_data *info, char **argv)
+void init_datas(t_data *info, char **argv)
 {
-    int i;
-    
-    i = 0;
     info->nbr_of_philos = atoi(argv[1]);
     info->time_to_die = atoi(argv[2]);
     info->time_to_eat = atoi(argv[3]);
@@ -70,7 +68,14 @@ int init_philos(t_data *info, char **argv)
     info->start_time = get_time();
     info->end = 0;
     if (argv[5])
-        info->min_meals = atoi(argv[5]);
+        info->min_meals = atoi(argv[5]); 
+}
+
+int init_philos(t_data *info)
+{
+    int i;
+    
+    i = 0;
     info->philo = malloc(sizeof(t_philo) * info->nbr_of_philos);
     if (!info->philo)
         return (1);
@@ -84,6 +89,12 @@ int init_philos(t_data *info, char **argv)
         info->philo[i].info = info;
         i++;
     }
+    info->fork_mtx = malloc(sizeof(t_philo) * info->nbr_of_philos);
+    if (!info->fork_mtx)
+        return (0);
+    i = -1;
+    while (++i < info->nbr_of_philos)
+        pthread_mutex_init(&(info->fork_mtx[i]), NULL);
     return (0);
 }
 
@@ -96,7 +107,8 @@ int main(int argc, char **argv)
         write(1, "Invalid argument\n", 17);
         return (1);
     }
-    if (init_philos(&info, argv))
+    init_datas(&info, argv);
+    if (init_philos(&info))
     {
         //clean_table(&info);
         return (0);
@@ -106,7 +118,6 @@ int main(int argc, char **argv)
         write(1, "Error\n", 6);
         return (0);
     }
-    //init_table(&info);
     //clean_table(&info);
     return (0);
 }
