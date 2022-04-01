@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:00:11 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 15:31:44 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:13:46 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_death(t_philo *ph)
 {
-	if (get_time() - ph->last_meal_time > ph->info->time_to_die)
+	if ((get_time() - ph->last_meal_time) > ph->info->time_to_die)
 	{
 		ph->info->end = 1;
 		return (1);
@@ -30,9 +30,8 @@ void	ft_sleep(t_philo *ph)
 	pthread_mutex_lock(&(ph->info->sleep_mtx));
 	printf("%lld %d is sleeping\n", get_time() \
 		- ph->info->start_time, ph->id);
-	while (get_time() < (curr + ph->info->time_to_sleep) && !check_death(ph))
+	while (get_time() < (curr + ph->info->time_to_sleep))
 		usleep(1);
-	check_death(ph);
 	pthread_mutex_unlock(&(ph->info->sleep_mtx));
 }
 
@@ -40,13 +39,14 @@ void	eat(t_philo *ph)
 {
 	long long	curr;
 
+	if (check_death(ph))
+		return ;
 	curr = get_time();
 	pthread_mutex_lock(&(ph->info->eat_mtx));
-	check_death(ph);
-	ph->last_meal_time = get_time();
 	printf("%lld %d is eating\n", get_time() \
 		- ph->info->start_time, ph->id);
-	while (get_time() < (curr + ph->info->time_to_eat) && !check_death(ph))
+	ph->last_meal_time = get_time();
+	while (get_time() < (curr + ph->info->time_to_eat))
 		usleep(1);
 	pthread_mutex_unlock(&(ph->info->eat_mtx));
 	ph->eaten_meals++;

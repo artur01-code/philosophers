@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:52:49 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 15:27:13 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:10:30 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_data {
 	int						meal_flag;
 	int						end;
 	long long				start_time;
-	long long				death_time;
 	pthread_mutex_t			eat_mtx;
 	pthread_mutex_t			sleep_mtx;
 	pthread_mutex_t			*fork_mtx;
@@ -46,7 +45,7 @@ typedef struct s_data {
 }				t_data;
 
 void		*function();
-int		init_datas(t_data *info, char **argv);
+int			init_datas(t_data *info, char **argv);
 int			init_philos(t_data *info);
 int			init_table(t_data *info);
 long long	get_time(void);
