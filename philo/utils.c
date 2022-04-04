@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:47:41 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 16:13:25 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/04 08:32:44 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	handle_one(t_data *info)
 	printf("%lld %d has taken a fork\n", get_time() \
 		- info->start_time, info->philo->id);
 	usleep(info->time_to_die * 1000);
-	 printf("%lld %d died\n", get_time() \
+	printf("%lld %d died\n", get_time() \
 		- info->start_time, info->philo->id);
 	return (1);
 }
