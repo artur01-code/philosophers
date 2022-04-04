@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:21:07 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/04 08:17:42 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/04 11:37:56 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*function(void *philos)
 			return (0);
 		}
 		check_death(ph);
+		usleep(100);
 		grab_fork(ph);
 	}
 	return (0);

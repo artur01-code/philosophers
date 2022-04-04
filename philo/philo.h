@@ -6,18 +6,18 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:52:49 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 16:10:30 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/04 11:28:46 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <pthread.h>
-#include <stdio.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_philo {
 	int					id;
@@ -44,7 +44,6 @@ typedef struct s_data {
 	t_philo					*philo;
 }				t_data;
 
-void		*function();
 int			init_datas(t_data *info, char **argv);
 int			init_philos(t_data *info);
 int			init_table(t_data *info);
