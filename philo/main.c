@@ -6,12 +6,11 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:21:07 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/04 11:37:56 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/14 08:55:22 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h> //atoi
 
 void	*function(void *philos)
 {
@@ -69,7 +68,12 @@ int	init_datas(t_data *info, char **argv)
 	info->start_time = get_time();
 	info->end = 0;
 	if (argv[5])
+	{
+		info->meal_flag = 1;
 		info->min_meals = ft_atoi(argv[5]);
+	}
+	else
+		info->meal_flag = 0;
 	if (check_args(info))
 		return (1);
 	if (info->nbr_of_philos == 1)
