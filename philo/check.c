@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:49:09 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/01 13:34:13 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/04/21 15:02:24 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_args(t_data *info)
 {
 	if (info->time_to_die < 60 || info->time_to_eat < 60 \
-		|| info->time_to_eat < 60 || info->nbr_of_philos > 200)
+		|| info->time_to_sleep < 60 || info->nbr_of_philos > 200)
 	{
 		write(1, "Error\n", 6);
 		return (1);
