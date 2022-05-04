@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:47:41 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/04 08:32:44 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/05/04 14:33:37 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	lock_all(t_philo *ph)
 	int	i;
 
 	i = 0;
-	pthread_mutex_lock(&(ph->info->eat_mtx));
-	pthread_mutex_lock(&(ph->info->sleep_mtx));
 	while (i < ph->info->nbr_of_philos)
 	{
 		pthread_mutex_destroy(&(ph->info->fork_mtx[ph->l_fork]));

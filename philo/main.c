@@ -6,11 +6,23 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:21:07 by jtomala           #+#    #+#             */
-/*   Updated: 2022/04/21 15:04:30 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/05/04 14:33:22 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int read_end(t_philo *ph)
+{
+	int red;
+
+	red = 1;
+	pthread_mutex_lock(&(ph->info->dies));
+	if (ph->info->end == 1)
+		red = 0;
+	pthread_mutex_unlock(&(ph->info->dies));
+	return (red);
+}
 
 void	*function(void *philos)
 {
@@ -19,7 +31,7 @@ void	*function(void *philos)
 	ph = (t_philo *) philos;
 	if (ph->id % 2)
 		usleep(ph->info->time_to_eat * 500);
-	while (!ph->info->end)
+	while (read_end(ph))
 	{
 		if (ph->info->meal_flag && ph->eaten_meals == ph->info->min_meals)
 		{
@@ -106,6 +118,7 @@ int	init_philos(t_data *info)
 	i = -1;
 	while (++i < info->nbr_of_philos)
 		pthread_mutex_init(&(info->fork_mtx[i]), NULL);
+	pthread_mutex_init(&(info->dies), NULL);
 	return (0);
 }
 
