@@ -6,23 +6,11 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:21:07 by jtomala           #+#    #+#             */
-/*   Updated: 2022/05/04 14:33:22 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/05/11 08:22:48 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int read_end(t_philo *ph)
-{
-	int red;
-
-	red = 1;
-	pthread_mutex_lock(&(ph->info->dies));
-	if (ph->info->end == 1)
-		red = 0;
-	pthread_mutex_unlock(&(ph->info->dies));
-	return (red);
-}
 
 void	*function(void *philos)
 {

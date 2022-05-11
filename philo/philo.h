@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:52:49 by jtomala           #+#    #+#             */
-/*   Updated: 2022/05/04 14:33:00 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/05/11 08:23:36 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void		clean_table(t_data *data);
 int			ft_atoi(const char *str);
 int			check_args(t_data *info);
 int			handle_one(t_data *info);
+int			read_end(t_philo *ph);
 
 #endif
